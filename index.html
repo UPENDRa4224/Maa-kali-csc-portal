@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Maa Kali CSC Portal</title>
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f5f9;
         }
 
         .header {
@@ -26,17 +26,16 @@
         }
 
         .header p {
-            margin: 8px 0 0;
-            font-size: 16px;
+            margin-top: 8px;
         }
 
-        .box {
+        .container {
             max-width: 500px;
-            background: white;
             margin: 40px auto;
             padding: 30px;
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
             text-align: center;
         }
 
@@ -53,7 +52,7 @@
             background: #1a73e8;
             color: white;
             border: none;
-            padding: 13px 25px;
+            padding: 14px 30px;
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
@@ -63,19 +62,32 @@
             background: #1557b0;
         }
 
-        .official-link {
+        #result {
+            margin-top: 20px;
+        }
+
+        .pdf-button {
             display: inline-block;
-            margin-top: 25px;
-            color: #1a73e8;
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
             text-decoration: none;
-            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
         }
 
         .footer {
             text-align: center;
             padding: 20px;
             color: #666;
-            font-size: 14px;
         }
     </style>
 </head>
@@ -84,47 +96,93 @@
 
     <div class="header">
         <h1>Maa Kali CSC Portal</h1>
-        <p>MP e-District Service Portal</p>
+        <p>RS Number से Certificate Search करें</p>
     </div>
 
-    <div class="box">
-        <h2>RS Number Search</h2>
+    <div class="container">
+
+        <h2>Certificate Search</h2>
 
         <p>अपना RS Number दर्ज करें</p>
 
-        <input type="text" id="rsNumber" placeholder="RS Number यहाँ डालें">
+        <input
+            type="text"
+            id="rsNumber"
+            placeholder="उदाहरण: RS/419/0110/51674/2025"
+        >
 
         <br>
 
-        <button onclick="searchRS()">Search</button>
+        <button onclick="searchCertificate()">
+            Search
+        </button>
 
-        <p id="message"></p>
+        <div id="result"></div>
 
-        <a class="official-link"
-           href="https://mpedistrict.gov.in/MPL/ServiceRegistrationStatus.aspx?id=dsc"
-           target="_blank">
-           MP e-District Official Portal खोलें
-        </a>
     </div>
 
     <div class="footer">
         © 2026 Maa Kali CSC Centre
     </div>
 
-    <script>
-        function searchRS() {
-            let rs = document.getElementById("rsNumber").value.trim();
-            let message = document.getElementById("message");
 
-            if (rs === "") {
-                message.innerHTML = "कृपया RS Number दर्ज करें।";
+    <script>
+
+        function searchCertificate() {
+
+            let rsNumber =
+                document.getElementById("rsNumber").value.trim();
+
+            let result =
+                document.getElementById("result");
+
+
+            if (rsNumber === "") {
+
+                result.innerHTML =
+                    '<p class="error">कृपया RS Number दर्ज करें।</p>';
+
                 return;
             }
 
-            message.innerHTML = 
-                "आपका RS Number: <b>" + rs + "</b><br><br>" +
-                "कृपया नीचे दिए गए Official MP e-District Portal पर जाकर अपना आवेदन देखें।";
+
+            // आपके PDF का RS Number
+            let correctRS =
+                "RS/419/0110/51674/2025";
+
+
+            if (rsNumber === correctRS) {
+
+                result.innerHTML =
+
+                    '<p class="success">Certificate मिल गया!</p>' +
+
+                    '<a class="pdf-button" ' +
+
+                    'href="certificate.pdf" ' +
+
+                    'target="_blank">' +
+
+                    '📄 PDF देखें / Download करें' +
+
+                    '</a>';
+
+            }
+
+            else {
+
+                result.innerHTML =
+
+                    '<p class="error">' +
+
+                    'इस RS Number का Certificate उपलब्ध नहीं है।' +
+
+                    '</p>';
+
+            }
+
         }
+
     </script>
 
 </body>
