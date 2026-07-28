@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maa Kali CSC Portal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #1a73e8;
+            color: white;
+            text-align: center;
+            padding: 25px 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .header p {
+            margin: 8px 0 0;
+            font-size: 16px;
+        }
+
+        .box {
+            max-width: 500px;
+            background: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 14px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1557b0;
+        }
+
+        .official-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Maa Kali CSC Portal</h1>
+        <p>MP e-District Service Portal</p>
+    </div>
+
+    <div class="box">
+        <h2>RS Number Search</h2>
+
+        <p>अपना RS Number दर्ज करें</p>
+
+        <input type="text" id="rsNumber" placeholder="RS Number यहाँ डालें">
+
+        <br>
+
+        <button onclick="searchRS()">Search</button>
+
+        <p id="message"></p>
+
+        <a class="official-link"
+           href="https://mpedistrict.gov.in/MPL/ServiceRegistrationStatus.aspx?id=dsc"
+           target="_blank">
+           MP e-District Official Portal खोलें
+        </a>
+    </div>
+
+    <div class="footer">
+        © 2026 Maa Kali CSC Centre
+    </div>
+
+    <script>
+        function searchRS() {
+            let rs = document.getElementById("rsNumber").value.trim();
+            let message = document.getElementById("message");
+
+            if (rs === "") {
+                message.innerHTML = "कृपया RS Number दर्ज करें।";
+                return;
+            }
+
+            message.innerHTML = 
+                "आपका RS Number: <b>" + rs + "</b><br><br>" +
+                "कृपया नीचे दिए गए Official MP e-District Portal पर जाकर अपना आवेदन देखें।";
+        }
+    </script>
+
+</body>
+</html>
